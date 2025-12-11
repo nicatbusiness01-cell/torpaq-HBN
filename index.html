@@ -1,393 +1,186 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-    <meta charset="UTF-8">
-    <title>HBN - LDU Aqrar və Mühəndislik pdf arşivi</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HBN - LDU Aqrar və Mühəndislik PDF Arşivi</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f2f0e9;
+      color: #2b2b2b;
+      margin: 0;
+    }
 
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f4f5f0;
-            color: #1f2933;
-        }
+    header {
+      background: linear-gradient(120deg, #4b773c, #9f7c4c);
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
 
-        header {
-            background: linear-gradient(135deg, #166534, #65a30d);
-            color: #f9fafb;
-            padding: 16px 32px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      background: #e7e2d6;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-        header h1 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
+    .navbar button {
+      background: #fdfcf9;
+      border: 1px solid #bba888;
+      border-radius: 8px;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
 
-        header p {
-            font-size: 13px;
-            opacity: 0.9;
-        }
+    .navbar button:hover {
+      background: #d9ebd1;
+    }
 
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 10px 24px;
-            background: #e4ebdd;
-            border-bottom: 1px solid #cbd5bd;
-        }
+    .navbar button.active {
+      background: #4b773c;
+      color: white;
+      border-color: #4b773c;
+    }
 
-        .departments {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
 
-        .dept-btn {
-            border-radius: 999px;
-            border: 1px solid #cbd5bd;
-            padding: 6px 14px;
-            font-size: 13px;
-            background: #f9faf7;
-            cursor: pointer;
-            transition: background 0.15s, transform 0.05s, box-shadow 0.1s;
-            white-space: nowrap;
-        }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
 
-        .dept-btn:hover {
-            background: #e0f2e9;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-            transform: translateY(-1px);
-        }
+    .pdf-list {
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: auto;
+    }
 
-        .dept-btn.active {
-            background: #166534;
-            color: #f9fafb;
-            border-color: #14532d;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-        }
+    .pdf-item {
+      background: #ffffff;
+      border: 1px solid #cfcfcf;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 8px 0;
+      text-align: left;
+      transition: 0.3s;
+    }
 
-        .search-box {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+    .pdf-item:hover {
+      background: #e7f3e3;
+    }
 
-        .search-box input {
-            padding: 6px 10px;
-            border-radius: 999px;
-            border: 1px solid #cbd5bd;
-            font-size: 13px;
-            min-width: 190px;
-            outline: none;
-        }
-
-        .search-box input:focus {
-            border-color: #166534;
-            box-shadow: 0 0 0 2px rgba(22, 101, 52, 0.25);
-        }
-
-        main {
-            display: flex;
-            height: calc(100vh - 112px);
-        }
-
-        .sidebar {
-            width: 280px;
-            border-right: 1px solid #d3ddc7;
-            background: #f9faf7;
-            padding: 14px 12px;
-            overflow-y: auto;
-        }
-
-        .sidebar h2 {
-            font-size: 15px;
-            color: #166534;
-            margin-bottom: 10px;
-        }
-
-        .pdf-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .pdf-item {
-            border-radius: 10px;
-            background: #ffffff;
-            border: 1px solid #dde6cf;
-            padding: 8px 10px;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.15s, transform 0.05s, box-shadow 0.1s;
-        }
-
-        .pdf-item:hover {
-            background: #edf7eb;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-            transform: translateY(-1px);
-        }
-
-        .pdf-item.active {
-            background: #166534;
-            color: #f9fafb;
-            border-color: #14532d;
-        }
-
-        .pdf-item span {
-            font-size: 11px;
-            opacity: 0.8;
-        }
-
-        .viewer {
-            flex: 1;
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .viewer-header {
-            font-size: 14px;
-            color: #166534;
-        }
-
-        .viewer-box {
-            flex: 1;
-            border-radius: 12px;
-            border: 1px solid #d3ddc7;
-            background: #ffffff;
-            overflow: hidden;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .empty-state {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 13px;
-            color: #6b7280;
-            padding: 20px;
-        }
-
-        @media (max-width: 900px) {
-            main {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: 220px;
-                border-right: none;
-                border-bottom: 1px solid #d3ddc7;
-            }
-
-            .viewer {
-                height: calc(100vh - 332px);
-            }
-        }
-    </style>
+    .pdf-item a {
+      text-decoration: none;
+      color: #2b2b2b;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-<header>
-    <h1>HBN - LDU Aqrar və Mühəndislik pdf arşivi</h1>
-    <p>Fakültənin ixtisasları üzrə dərs materialları və sillabus PDF-ləri</p>
-</header>
 
-<div class="top-bar">
-    <div class="departments" id="departmentTabs">
-        <!-- JS ilə doldurulacaq -->
-    </div>
-    <div class="search-box">
-        <input id="searchInput" type="text" placeholder="PDF axtar...">
-    </div>
+<header>📚 HBN - LDU Aqrar və Mühəndislik PDF Arxivi</header>
+
+<div class="navbar" id="navbar">
+  <button class="active" onclick="showSection('torpaq')">Torpaqşünaslıq və Aqrokimya</button>
+  <button onclick="showSection('komp')">Kompüter mühəndisliyi</button>
+  <button onclick="showSection('infoTech')">İnformasiya texnologiyaları</button>
+  <button onclick="showSection('infoSec')">İnformasiya təhlükəsizliyi</button>
+  <button onclick="showSection('qida')">Qida mühəndisliyi</button>
+  <button onclick="showSection('bagc')">Bağçılıq</button>
+  <button onclick="showSection('agroM')">Aqromühəndislik</button>
+  <button onclick="showSection('agro')">Aqronomluq</button>
+  <button onclick="showSection('terev')">Bağçılıq və tərəvəzçilik</button>
+  <button onclick="showSection('mesec')">Meşəçilik</button>
 </div>
 
-<main>
-    <aside class="sidebar">
-        <h2 id="sidebarTitle">Torpaqşünaslıq və Aqrokimya</h2>
-        <ul class="pdf-list" id="pdfList"></ul>
-    </aside>
+<div class="container">
+  <div class="search-box">
+    <input type="text" id="searchInput"
+           placeholder="PDF adı ilə axtar..."
+           onkeyup="searchPDFs()">
+  </div>
 
-    <section class="viewer">
-        <div class="viewer-header" id="viewerHeader">
-            PDF seçin və sağdakı pəncərədə açılacaq.
-        </div>
-        <div class="viewer-box" id="viewerBox">
-            <div class="empty-state" id="emptyState">
-                Hələ heç bir fayl seçilməyib.<br>
-                Yuxarıdan ixtisası, soldan isə PDF adını klik edin.
-            </div>
-        </div>
-    </section>
-</main>
+  <ul class="pdf-list" id="pdfList"></ul>
+</div>
 
 <script>
-    // BÖLMƏLƏR
-    const departments = [
-        { id: "komputer", name: "Kompüter mühəndisliyi", pdfs: [] },
-        { id: "it", name: "İnformasiya texnologiyaları", pdfs: [] },
-        { id: "security", name: "İnformasiya təhlükəsizliyi", pdfs: [] },
-        { id: "food", name: "Qida mühəndisliyi", pdfs: [] },
-        { id: "wine", name: "Şərabçılıq", pdfs: [] },
-        { id: "agroeng", name: "Aqromühəndislik", pdfs: [] },
-        { id: "agronomy", name: "Aqronomluq", pdfs: [] },
-        { id: "garden", name: "Bağçılıq və tərəvəzçilik", pdfs: [] },
-        {
-            id: "soil",
-            name: "Torpaqşünaslıq və Aqrokimya",
-            pdfs: [
-                { title: "Aqrokimya", file: "pdf/aqrokimya.pdf" },
-                { title: "Aqrokimya sillabus", file: "pdf/aqrokimya_syllabus.pdf" },
-                { title: "Mikrobiologiya", file: "pdf/mikrobiologiya.pdf" },
-                { title: "Mikrobiologiya sillabus", file: "pdf/mikrobiologiya_syllabus.pdf" },
-                { title: "Mülki müdafiə (mövzu)", file: "pdf/mulki_mudafie_movzu.pdf" },
-                { title: "Mülki müdafiə sillabus", file: "pdf/mulki_mudafie_syllabus.pdf" },
-                { title: "Politologiya mühazirələr", file: "pdf/politologiya_muhazireler.pdf" },
-                { title: "Politologiya sillabus", file: "pdf/politologiya_syllabus.pdf" },
-                { title: "Torpaqfizikası sillabus", file: "pdf/torpaqfizikasi_syllabus.pdf" },
-                { title: "Torpaqşünaslıq – 1", file: "pdf/torpaqsunasliq_1.pdf" },
-                { title: "Torpaqşünaslıq – 2", file: "pdf/torpaqsunasliq_2.pdf" },
-                { title: "Torpaqşünaslıq sillabus", file: "pdf/torpaqsunasliq_syllabus.pdf" }
-            ]
-        },
-        { id: "forest", name: "Meşəçilik", pdfs: [] }
-    ];
+  const data = {
+    // Torpaqşünaslıq və Aqrokimya bölməsi
+    torpaq: [
+      { name: "Torpaqşünaslıq - 1", file: "pdf/torpaqshunas_one.pdf" },
+      { name: "Torpaqşünaslıq - 2", file: "pdf/torpaqshunas_two.pdf" },
+      { name: "Torpaqşünaslıq sillabus", file: "pdf/torpaqshunas_syllabus.pdf" },
 
-    const departmentTabs = document.getElementById("departmentTabs");
-    const pdfListEl = document.getElementById("pdfList");
-    const sidebarTitle = document.getElementById("sidebarTitle");
-    const viewerHeader = document.getElementById("viewerHeader");
-    const viewerBox = document.getElementById("viewerBox");
-    const emptyState = document.getElementById("emptyState");
-    const searchInput = document.getElementById("searchInput");
+      { name: "Aqrokimya", file: "pdf/aqrokimya.pdf" },
+      { name: "Aqrokimya sillabus", file: "pdf/aqrokimya_syllabus.pdf" },
+      { name: "Mikrobiologiya", file: "pdf/mikrobiologiya.pdf" },
+      { name: "Mikrobiologiya sillabus", file: "pdf/mikrobiologiya_syllabus.pdf" },
+      { name: "Mülki müdafiə mövzu", file: "pdf/mulki_mudafie_movzu.pdf" },
+      { name: "Mülki müdafiə sillabus", file: "pdf/mulki_mudafie_syllabus.pdf" },
+      { name: "Politologiya mühazirələr", file: "pdf/politologiya_muhazireler.pdf" },
+      { name: "Politologiya sillabus", file: "pdf/politologiya_syllabus.pdf" },
+      { name: "Torpaqfizikası sillabus", file: "pdf/torpaqfizikasi_syllabus.pdf" },
+      { name: "Torpaq mikrobiologiyası", file: "pdf/torpaq_mikrobiologiyasi.pdf" }
+    ],
 
-    let currentDeptId = "soil";
+    // Qalan bölmələr hələ boşdu – sonradan dolduracağıq
+    komp: [],
+    infoTech: [],
+    infoSec: [],
+    qida: [],
+    bagc: [],
+    agroM: [],
+    agro: [],
+    terev: [],
+    mesec: []
+  };
 
-    function createTabs() {
-        departments.forEach(dept => {
-            const btn = document.createElement("button");
-            btn.className = "dept-btn";
-            btn.textContent = dept.name;
-            btn.dataset.id = dept.id;
+  function showSection(section) {
+    document.querySelectorAll(".navbar button").forEach(b => b.classList.remove("active"));
+    event.target.classList.add("active");
+    displayPDFs(data[section]);
+    // axtarış inputunu sıfırla
+    document.getElementById("searchInput").value = "";
+  }
 
-            btn.addEventListener("click", () => {
-                currentDeptId = dept.id;
-                setActiveDeptButton();
-                loadPdfList();
-                searchInput.value = "";
-            });
-
-            departmentTabs.appendChild(btn);
-        });
-        setActiveDeptButton();
-    }
-
-    function setActiveDeptButton() {
-        const buttons = document.querySelectorAll(".dept-btn");
-        buttons.forEach(btn => {
-            btn.classList.toggle("active", btn.dataset.id === currentDeptId);
-        });
-
-        const dept = departments.find(d => d.id === currentDeptId);
-        sidebarTitle.textContent = dept ? dept.name : "";
-    }
-
-    function loadPdfList() {
-        const dept = departments.find(d => d.id === currentDeptId);
-        pdfListEl.innerHTML = "";
-
-        if (!dept || dept.pdfs.length === 0) {
-            pdfListEl.innerHTML = "";
-            viewerHeader.textContent = "Bu ixtisas üçün hələ PDF əlavə edilməyib.";
-            viewerBox.innerHTML = "";
-            const msg = document.createElement("div");
-            msg.className = "empty-state";
-            msg.textContent = "Bu bölmə üçün materiallar sonradan əlavə olunacaq.";
-            viewerBox.appendChild(msg);
-            return;
-        }
-
-        viewerHeader.textContent = "Fayl seçin: " + dept.name;
-        viewerBox.innerHTML = "";
-        viewerBox.appendChild(emptyState);
-        emptyState.style.display = "flex";
-
-        dept.pdfs.forEach((pdf, index) => {
-            const li = document.createElement("li");
-            li.className = "pdf-item";
-            li.dataset.title = pdf.title.toLowerCase();
-
-            const titleSpan = document.createElement("div");
-            titleSpan.textContent = pdf.title;
-
-            const miniSpan = document.createElement("span");
-            miniSpan.textContent = "PDF";
-
-            li.appendChild(titleSpan);
-            li.appendChild(miniSpan);
-
-            li.addEventListener("click", () => {
-                openPdf(pdf);
-                setActivePdfItem(li);
-            });
-
-            if (index === 0 && currentDeptId === "soil") {
-                // ilk dəfə avtomatik seçmə
-            }
-
-            pdfListEl.appendChild(li);
-        });
-    }
-
-    function openPdf(pdf) {
-        viewerHeader.textContent = "Hazırda açıq fayl: " + pdf.title;
-        const iframe = document.createElement("iframe");
-        iframe.src = pdf.file;
-
-        viewerBox.innerHTML = "";
-        viewerBox.appendChild(iframe);
-    }
-
-    function setActivePdfItem(activeItem) {
-        const items = document.querySelectorAll(".pdf-item");
-        items.forEach(item => item.classList.remove("active"));
-        activeItem.classList.add("active");
-    }
-
-    // Axtarış
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase().trim();
-        const items = document.querySelectorAll(".pdf-item");
-        items.forEach(item => {
-            const title = item.dataset.title || "";
-            item.style.display = title.includes(query) ? "" : "none";
-        });
+  function displayPDFs(list) {
+    const pdfList = document.getElementById("pdfList");
+    pdfList.innerHTML = "";
+    list.forEach(pdf => {
+      const li = document.createElement("li");
+      li.className = "pdf-item";
+      li.innerHTML = `<a href="${pdf.file}" target="_blank">${pdf.name}</a>`;
+      pdfList.appendChild(li);
     });
+  }
 
-    // Başlanğıc
-    createTabs();
-    loadPdfList();
+  function searchPDFs() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const allPDFs = data.torpaq; // axtarış yalnız torpaq bölməsində
+    const filtered = allPDFs.filter(p => p.name.toLowerCase().includes(input));
+    displayPDFs(filtered);
+  }
+
+  // Səhifə açılan kimi Torpaqşünaslıq və Aqrokimya bölməsi göstərilsin
+  displayPDFs(data.torpaq);
 </script>
+
 </body>
 </html>
