@@ -4,169 +4,145 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HBN - LDU Aqrar və Mühəndislik PDF Arxivi</title>
+
 <style>
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: #f2f0e9;
-  color: #2b2b2b;
-  margin: 0;
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  background:#f2f0e9;
 }
-
-header {
-  background: linear-gradient(120deg, #4b773c, #9f7c4c);
-  color: white;
-  text-align: center;
-  padding: 18px;
-  font-size: 20px;
-  font-weight: bold;
+header{
+  background:linear-gradient(120deg,#4b773c,#9f7c4c);
+  color:#fff;
+  text-align:center;
+  padding:18px;
+  font-size:20px;
+  font-weight:600;
 }
-
-.navbar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  background: #e7e2d6;
-  padding: 10px;
+.navbar{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  background:#e7e2d6;
+  padding:10px;
 }
-
-.navbar button {
-  background: #fdfcf9;
-  border: 1px solid #bba888;
-  border-radius: 8px;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 14px;
+.navbar button{
+  padding:8px 14px;
+  border-radius:8px;
+  border:1px solid #bba888;
+  background:#fff;
+  cursor:pointer;
 }
-
-.navbar button:hover {
-  background: #d9ebd1;
+.navbar button.active{
+  background:#4b773c;
+  color:#fff;
 }
-
-.navbar button.active {
-  background: #4b773c;
-  color: white;
-  border-color: #4b773c;
+.container{
+  padding:20px;
+  text-align:center;
 }
-
-.container {
-  padding: 20px;
-  text-align: center;
+.search-box input{
+  width:60%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #aaa;
+  margin-bottom:20px;
 }
-
-.search-box input {
-  width: 60%;
-  padding: 10px;
-  border: 1px solid #aaa;
-  border-radius: 8px;
-  margin-bottom: 20px;
+.pdf-list{
+  list-style:none;
+  padding:0;
+  max-width:700px;
+  margin:auto;
 }
-
-.pdf-list {
-  list-style: none;
-  padding: 0;
-  max-width: 700px;
-  margin: auto;
+.pdf-item{
+  background:#fff;
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:10px;
+  margin:8px 0;
+  text-align:left;
 }
-
-.pdf-item {
-  background: #ffffff;
-  border: 1px solid #cfcfcf;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 8px 0;
-  text-align: left;
-}
-
-.pdf-item a {
-  text-decoration: none;
-  color: #2b2b2b;
-  font-weight: bold;
+.pdf-item a{
+  text-decoration:none;
+  color:#222;
+  font-weight:600;
 }
 </style>
 </head>
+
 <body>
 
-<header>📚 HBN - LDU Aqrar və Mühəndislik PDF Arxiv</header>
+<header>📚 HBN - LDU Aqrar və Mühəndislik PDF Arxivi</header>
 
-<div class="navbar" id="navbar">
-  <button class="active" onclick="showSection('torpaq')">Torpaqşünaslıq və Aqrokimya</button>
-  <button onclick="showSection('komp')">Kompüter mühəndisliyi</button>
-  <button onclick="showSection('infoTech')">İnformasiya texnologiyaları</button>
-  <button onclick="showSection('infoSec')">İnformasiya təhlükəsizliyi</button>
-  <button onclick="showSection('qida')">Qida mühəndisliyi</button>
-  <button onclick="showSection('serab')">Şərabçılıq</button>
-  <button onclick="showSection('agroM')">Aqromühəndislik</button>
-  <button onclick="showSection('agro')">Aqronomluq</button>
-  <button onclick="showSection('terev')">Bağçılıq və tərəvəzçilik</button>
-  <button onclick="showSection('mesec')">Meşəçilik</button>
+<div class="navbar">
+  <button class="active" onclick="showSection('torpaq',this)">Torpaqşünaslıq və Aqrokimya</button>
+  <button onclick="showSection('it',this)">İnformasiya texnologiyaları</button>
+  <button onclick="showSection('komp',this)">Kompüter mühəndisliyi</button>
+  <button onclick="showSection('qida',this)">Qida mühəndisliyi</button>
+  <button onclick="showSection('serab',this)">Şərabçılıq</button>
 </div>
 
 <div class="container">
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="PDF adı ilə axtar..." onkeyup="searchPDFs()">
+    <input id="searchInput" placeholder="PDF axtar..." onkeyup="searchPDF()">
   </div>
 
-  <ul class="pdf-list" id="pdfList"></ul>
+  <ul id="pdfList" class="pdf-list"></ul>
 </div>
 
 <script>
+const torpaqPDF = [
+ {name:"Torpaqşünaslıq - 1",file:"pdf/torpaqshunas_one.pdf"},
+ {name:"Torpaqşünaslıq - 2",file:"pdf/torpaqshunastwo.pdf"},
+ {name:"Torpaqşünaslıq sillabus",file:"pdf/torpaqshunas_syllabus.pdf"},
+ {name:"Aqrokimya",file:"pdf/aqrokimya.pdf"},
+ {name:"Aqrokimya sillabus",file:"pdf/aqrokimya_syllabus.pdf"},
+ {name:"Mülki müdafiə",file:"pdf/mulki_mudafie.pdf"},
+ {name:"Mülki müdafiə sillabus",file:"pdf/mulki_mudafie_syllabus.pdf"},
+ {name:"Politologiya",file:"pdf/politologiya.pdf"},
+ {name:"Politologiya sillabus",file:"pdf/politologiya_syllabus.pdf"}
+];
+
+const itPDF = [
+ {name:"Mülki müdafiə",file:"pdf/mulki_mudafie.pdf"},
+ {name:"Mülki müdafiə sillabus",file:"pdf/mulki_mudafie_syllabus.pdf"},
+ {name:"Politologiya",file:"pdf/politologiya.pdf"},
+ {name:"Politologiya sillabus",file:"pdf/politologiya_syllabus.pdf"}
+];
+
 const data = {
-  torpaq: [
-    { name: "Torpaqşünaslıq - 1", file: "pdf/torpaqshunas_one.pdf" },
-
-    /* 🔥 DÜZƏLDİLMİŞ HİSSƏ 🔥 */
-    { name: "Torpaqşünaslıq - 2", file: "pdf/torpaqshunastwo.pdf" },
-
-    { name: "Torpaqşünaslıq sillabus", file: "pdf/torpaqshunas_syllabus.pdf" },
-    { name: "Aqrokimya", file: "pdf/aqrokimya.pdf" },
-    { name: "Aqrokimya sillabus", file: "pdf/aqrokimya_syllabus.pdf" },
-    { name: "Mikrobiologiya", file: "pdf/mikrobiologiya.pdf" },
-    { name: "Mikrobiologiya sillabus", file: "pdf/mikrobiologiya_syllabus.pdf" },
-    { name: "Mülki müdafiə mövzu", file: "pdf/mulki_mudafie_movzu.pdf" },
-    { name: "Mülki müdafiə sillabus", file: "pdf/mulki_mudafie_syllabus.pdf" },
-    { name: "Politologiya mühazirələr", file: "pdf/politologiya_muhazireler.pdf" },
-    { name: "Politologiya sillabus", file: "pdf/politologiya_syllabus.pdf" },
-    { name: "Torpaqfizikası sillabus", file: "pdf/torpaqfizikasi_syllabus.pdf" },
-    { name: "Torpaq mikrobiologiyası", file: "pdf/torpaq_mikrobiologiyasi.pdf" }
-  ],
-
-  komp: [],
-  infoTech: [],
-  infoSec: [],
-  qida: [],
-  serab: [],
-  agroM: [],
-  agro: [],
-  terev: [],
-  mesec: []
+ torpaq: torpaqPDF,
+ it: itPDF,
+ komp: [],
+ qida: [],
+ serab: []
 };
 
-function showSection(section) {
-  document.querySelectorAll(".navbar button").forEach(b => b.classList.remove("active"));
-  event.target.classList.add("active");
-  displayPDFs(data[section]);
+let activeSection="torpaq";
+
+function showSection(section,btn){
+ activeSection=section;
+ document.querySelectorAll(".navbar button").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");
+ render(data[section]);
 }
 
-function displayPDFs(list) {
-  const pdfList = document.getElementById("pdfList");
-  pdfList.innerHTML = "";
-  list.forEach(pdf => {
-    const li = document.createElement("li");
-    li.className = "pdf-item";
-    li.innerHTML = `<a href="${pdf.file}" target="_blank">${pdf.name}</a>`;
-    pdfList.appendChild(li);
-  });
+function render(list){
+ const ul=document.getElementById("pdfList");
+ ul.innerHTML="";
+ list.forEach(p=>{
+  ul.innerHTML+=`<li class="pdf-item"><a href="${p.file}" target="_blank">${p.name}</a></li>`;
+ });
 }
 
-function searchPDFs() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const allPDFs = data.torpaq;
-  const filtered = allPDFs.filter(p => p.name.toLowerCase().includes(input));
-  displayPDFs(filtered);
+function searchPDF(){
+ const q=document.getElementById("searchInput").value.toLowerCase();
+ const filtered=data[activeSection].filter(p=>p.name.toLowerCase().includes(q));
+ render(filtered);
 }
 
-displayPDFs(data.torpaq);
+render(data.torpaq);
 </script>
 
 </body>
