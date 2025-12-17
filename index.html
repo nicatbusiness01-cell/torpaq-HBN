@@ -236,47 +236,45 @@
       "Meşəçilik"
     ];
 
-    // ✅ DİQQƏT: Burda fayl adları sənin GitHub /pdf qovluğundakı adlarla 1:1 eynidir.
+    // DİQQƏT: fayl adları sənin “pdf” qovluğundakı adlarla 100% eynidir.
     const FILES = {
       "Torpaqşünaslıq və Aqrokimya": [
-        { title: "Aqrar məsləhət xidməti — sillabus", file: "aqrar_meslehet_xidmeti_syllabus.pdf" },
+        { title: "Aqrar məsləhət xidməti — sillabus", file: "agrar_meslehet_xidmeti_syllabus.pdf" },
 
         { title: "Aqrokimya", file: "aqrokimya.pdf" },
         { title: "Aqrokimya — sillabus", file: "aqrokimya_syllabus.pdf" },
 
         { title: "Azərbaycan dili — sillabus", file: "azdili_syllabus.pdf" },
-        { title: "Rus dili — sillabus", file: "rusdili_syllabus.pdf" },
-
-        { title: "Bitki mühafizəsi — sillabus", file: "bitki_muhafizesi_syllabus.pdf" },
         { title: "Botanika — sillabus", file: "botanika_syllabus.pdf" },
 
+        { title: "Bitki mühafizəsi — sillabus", file: "bitki_muhafizesi_syllabus.pdf" },
         { title: "Coğrafi informasiya sistemləri — sillabus", file: "cografi_informasiya_sistemleri_syllabus.pdf" },
         { title: "Geodeziya — sillabus", file: "geodeziya_syllabus.pdf" },
         { title: "İngilis dili — sillabus", file: "ingilis_dili_syllabus.pdf" },
         { title: "Riyaziyyat — sillabus", file: "riyaziyyat_syllabus.pdf" },
+        { title: "Rus dili — sillabus", file: "rusdili_syllabus.pdf" },
 
         { title: "Mikrobiologiya", file: "mikrobiologiya.pdf" },
         { title: "Mikrobiologiya — sillabus", file: "mikrobiologiya_syllabus.pdf" },
 
+        { title: "Torpaq mikrobiologiyası və biotexnikası — sillabus", file: "torpaq_mikrobiologiyasi_ve_biotexnikasi_syllabus.pdf" },
+        { title: "Torpaq münbitliyi: qida maddələri və gübrələrdən istifadə — sillabus", file: "torpaq_munbitliyi_qida_maddeleri_ve_gubrelerden_istifade_syllabus.pdf" },
+        { title: "Torpaq münbitliyi və bitkilərin qidalanması — sillabus", file: "torpaq_munbitliyi_ve_bitkilerin_qidalanmasi_syllabus.pdf" },
+
         { title: "Torpaq fizikası — sillabus", file: "torpaqfizikasi_syllabus.pdf" },
+
+        { title: "Torpaqların aqroekoloji qiymətləndirilməsi — sillabus", file: "torpaqlarin_agroekoloji_qiymetlendirilmesi_syllabus.pdf" },
+        { title: "Torpaqların kartoqarfiyası — sillabus", file: "torpaqlarin_kartoqrafiyasi_syllabus.pdf" },
+        { title: "Torpaqların radiobiologiyası — sillabus", file: "torpaqlarin_radiobiologiyasi_syllabus.pdf" },
+        { title: "Torpaqların rekultivasiyası — sillabus", file: "torpaqlarin_rekultivasiya_syllabus.pdf" },
 
         { title: "Torpaqşünaslıq 1", file: "torpaqshunas_one.pdf" },
         { title: "Torpaqşünaslıq — sillabus", file: "torpaqshunas_syllabus.pdf" },
         { title: "Torpaqşünaslıq 2", file: "torpaqshunastwo.pdf" },
 
-        { title: "Ümumkimya — sillabus", file: "umumkimya_syllabus.pdf" },
+        { title: "Ümumi kimya — sillabus", file: "umumkimya_syllabus.pdf" },
 
-        { title: "Torpaqların aqroekoloji qiymətləndirilməsi — sillabus", file: "torpaqlarin_agroekoloji_qiymetlendirilmesi_syllabus.pdf" },
-        { title: "Torpaqların kartoqrafiyası — sillabus", file: "torpaqlarin_kartoqrafiyasi_syllabus.pdf" },
-        { title: "Torpaqların radiobiologiyası — sillabus", file: "torpaqlarin_radiobiologiyasi_syllabus.pdf" },
-        { title: "Torpaqların rekultivasiyası — sillabus", file: "torpaqlarin_rekultivasiyasi_syllabus.pdf" },
-
-        { title: "Torpaq mikrobiologiyası və biotexnikası — sillabus", file: "torpaq_mikrobiologiyasi_ve_biotexnikasi_syllabus.pdf" },
-
-        { title: "Torpaq münbitliyi və bitkilərin qidalanması — sillabus", file: "torpaq_munbitliyi_ve_bitkilerin_qidalanmasi_syllabus.pdf" },
-        { title: "Torpaq münbitliyi: qida maddələri və gübrələrdən istifadə — sillabus", file: "torpaq_munbitliyi_qida_maddeleri_ve_gubrelerden_istifade_syllabus.pdf" },
-
-        // Bu 4-ü həm burda, həm də "İnformasiya texnologiyaları" bölməsində görünür:
+        // Bu 4-ü həm burda, həm də “İnformasiya texnologiyaları” bölməsində görünsün:
         { title: "Mülki müdafiə — mövzu", file: "mulki_mudafie_movzu.pdf" },
         { title: "Mülki müdafiə — sillabus", file: "mulki_mudafie_syllabus.pdf" },
         { title: "Politologiya — mühazirələr", file: "politologiya_muhazireler.pdf" },
@@ -291,9 +289,8 @@
       ]
     };
 
-    for (const s of SECTIONS) {
-      if (!FILES[s]) FILES[s] = [];
-    }
+    // Qalan bölmələr boş qalır
+    for (const s of SECTIONS) if (!FILES[s]) FILES[s] = [];
 
     const tabsEl = document.getElementById("tabs");
     const titleEl = document.getElementById("sectionTitle");
