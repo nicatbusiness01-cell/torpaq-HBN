@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="az">
 <head>
@@ -151,14 +152,12 @@ footer{
     </div>
   </header>
 
-  <!-- İlk ekran: yalnız bölmələr -->
   <div class="hero" id="home">
     <h2>İxtisaslar</h2>
     <p>Bölmə seçin. PDF-lər bölmənin daxilində görünəcək.</p>
     <div class="grid" id="deptGrid"></div>
   </div>
 
-  <!-- Bölmə daxilində PDF siyahısı -->
   <div class="section" id="section" style="display:none;">
     <div class="sectionHead">
       <h3 id="sectionTitle">—</h3>
@@ -174,7 +173,6 @@ footer{
 <script>
 const PDF_BASE="pdf/";
 
-// Bölmələr
 const SECTIONS=[
   "Kompüter mühəndisliyi",
   "İnformasiya texnologiyaları",
@@ -188,7 +186,7 @@ const SECTIONS=[
   "Meşəçilik"
 ];
 
-// PDF-lər (SYLLABUS OLANLAR YOXDUR)
+// yalnız SYLLABUS olmayan PDF-lər
 const FILES={
   "Torpaqşünaslıq və Aqrokimya":[
     {title:"Aqrokimya",file:"aqrokimya.pdf"},
@@ -263,3 +261,4 @@ renderHome();
 </script>
 </body>
 </html>
+```
