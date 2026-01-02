@@ -8,12 +8,12 @@
 
 <style>
 :root{
-  --bg:#0e1511;
-  --card:#142019;
-  --card2:#0f1a14;
+  --bg:#0c1310;
+  --panel:#141f19;
+  --card:#17261d;
   --accent:#4ade80;
   --text:#e9f5ec;
-  --muted:#a8bdb0;
+  --muted:#a6bdb0;
   --line:rgba(255,255,255,.08);
   --radius:18px;
   --shadow:0 18px 40px rgba(0,0,0,.35);
@@ -26,114 +26,116 @@ body{
   background:
     radial-gradient(900px 600px at 10% 10%, rgba(74,222,128,.18), transparent 60%),
     radial-gradient(700px 500px at 85% 15%, rgba(34,197,94,.14), transparent 55%),
-    linear-gradient(180deg,#0b120e,var(--bg));
+    linear-gradient(180deg,#0a110d,var(--bg));
   min-height:100vh;
 }
 .wrap{max-width:1200px;margin:0 auto;padding:22px 16px 48px}
 header{
-  background:linear-gradient(180deg,rgba(20,32,25,.92),rgba(15,26,20,.92));
+  background:linear-gradient(180deg,rgba(20,32,25,.95),rgba(15,26,20,.95));
   border:1px solid var(--line);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding:18px;
-  position:sticky;top:12px;z-index:10;
-  backdrop-filter:blur(10px);
+  padding:20px;
 }
-.head{
-  display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap
+header h1{
+  margin:0;
+  font-size:20px;
+  letter-spacing:.3px;
 }
-.brand{
-  display:flex;gap:12px;align-items:center
+header p{
+  margin:6px 0 0 0;
+  color:var(--muted);
+  font-size:13px;
 }
-.logo{
-  width:42px;height:42px;border-radius:14px;
-  background:radial-gradient(circle at 30% 30%,rgba(74,222,128,.9),rgba(34,197,94,.25) 55%,rgba(0,0,0,.2));
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 10px 22px rgba(0,0,0,.28)
-}
-.brand h1{margin:0;font-size:18px;letter-spacing:.3px}
-.search{
-  min-width:260px;flex:1;display:flex;justify-content:flex-end
-}
-.search input{
-  width:min(520px,100%);
-  padding:11px 14px;border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-  color:var(--text);outline:none
-}
-.search input:focus{border-color:rgba(74,222,128,.55);box-shadow:0 0 0 4px rgba(74,222,128,.14)}
-
-.hero{
-  margin-top:18px;
-  background:linear-gradient(180deg,rgba(20,32,25,.85),rgba(15,26,20,.85));
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:28px;
-}
-.hero h2{margin:0 0 8px 0;font-size:22px}
-.hero p{margin:0;color:var(--muted)}
 
 .grid{
-  margin-top:22px;
+  margin-top:26px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px
+  gap:16px;
 }
 .card{
-  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
   border:1px solid var(--line);
   border-radius:16px;
   padding:18px;
   cursor:pointer;
   transition:.15s ease;
 }
-.card:hover{transform:translateY(-2px);border-color:rgba(74,222,128,.45)}
-.card h3{margin:0 0 6px 0;font-size:16px}
-.card span{color:var(--muted);font-size:13px}
+.card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(74,222,128,.45);
+}
+.card h3{
+  margin:0 0 6px 0;
+  font-size:16px;
+}
+.card span{
+  font-size:13px;
+  color:var(--muted);
+}
 
 .section{
-  margin-top:22px;
-  background:linear-gradient(180deg,rgba(20,32,25,.85),rgba(15,26,20,.85));
+  margin-top:26px;
+  background:linear-gradient(180deg,rgba(20,32,25,.9),rgba(15,26,20,.9));
   border:1px solid var(--line);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  overflow:hidden;
+  display:none;
 }
 .sectionHead{
-  padding:16px;border-bottom:1px solid var(--line);
-  display:flex;align-items:center;justify-content:space-between;gap:10px
+  padding:16px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-.sectionHead h3{margin:0;font-size:18px}
-.count{font-size:12px;color:var(--muted)}
-.list{padding:12px}
+.sectionHead h2{
+  margin:0;
+  font-size:18px;
+}
+.back{
+  font-size:13px;
+  cursor:pointer;
+  color:var(--accent);
+}
+.list{padding:14px}
 .item{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:12px;margin:8px 4px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  margin:8px 0;
   border:1px solid rgba(255,255,255,.1);
   border-radius:14px;
-  background:rgba(255,255,255,.03)
+  background:rgba(255,255,255,.03);
 }
 .item:hover{border-color:rgba(74,222,128,.45)}
 .name{font-size:14px}
 .actions a{
-  text-decoration:none;color:var(--text);
-  padding:8px 12px;border-radius:999px;
+  text-decoration:none;
+  font-size:13px;
+  padding:8px 12px;
+  border-radius:999px;
   border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04)
+  color:var(--text);
+  background:rgba(255,255,255,.04);
 }
 .actions a.primary{
   border-color:rgba(74,222,128,.6);
-  background:rgba(74,222,128,.12)
+  background:rgba(74,222,128,.12);
 }
-.empty{padding:18px;color:var(--muted)}
+.empty{
+  padding:18px;
+  color:var(--muted);
+}
 
 footer{
-  margin-top:18px;
+  margin-top:22px;
   text-align:center;
   font-size:12px;
-  color:rgba(255,255,255,.55)
+  color:rgba(255,255,255,.55);
 }
 </style>
 </head>
@@ -141,27 +143,16 @@ footer{
 <body>
 <div class="wrap">
   <header>
-    <div class="head">
-      <div class="brand">
-        <div class="logo"></div>
-        <h1>LDU – Aqrar və Mühəndislik fakültəsi PDF arxivi</h1>
-      </div>
-      <div class="search">
-        <input id="searchInput" type="search" placeholder="PDF axtar..."/>
-      </div>
-    </div>
+    <h1>LDU – Aqrar və Mühəndislik fakültəsi PDF arxivi</h1>
+    <p>İxtisas seçin. Yalnız mövzu və dərs materialları göstərilir.</p>
   </header>
 
-  <div class="hero" id="home">
-    <h2>İxtisaslar</h2>
-    <p>Bölmə seçin. PDF-lər bölmənin daxilində görünəcək.</p>
-    <div class="grid" id="deptGrid"></div>
-  </div>
+  <div class="grid" id="home"></div>
 
-  <div class="section" id="section" style="display:none;">
+  <div class="section" id="section">
     <div class="sectionHead">
-      <h3 id="sectionTitle">—</h3>
-      <div class="count" id="count">0 PDF</div>
+      <h2 id="sectionTitle">—</h2>
+      <div class="back" onclick="goHome()">← Geri</div>
     </div>
     <div class="list" id="list"></div>
     <div class="empty" id="empty" style="display:none;">Bu bölmədə PDF yoxdur.</div>
@@ -186,7 +177,7 @@ const SECTIONS=[
   "Meşəçilik"
 ];
 
-// yalnız SYLLABUS olmayan PDF-lər
+// YALNIZ “sillabus” OLMAYAN PDF-lər
 const FILES={
   "Torpaqşünaslıq və Aqrokimya":[
     {title:"Aqrokimya",file:"aqrokimya.pdf"},
@@ -203,41 +194,42 @@ const FILES={
 };
 for(const s of SECTIONS) if(!FILES[s]) FILES[s]=[];
 
-const grid=document.getElementById("deptGrid");
-const section=document.getElementById("section");
 const home=document.getElementById("home");
+const section=document.getElementById("section");
 const list=document.getElementById("list");
 const empty=document.getElementById("empty");
 const title=document.getElementById("sectionTitle");
-const count=document.getElementById("count");
-const search=document.getElementById("searchInput");
 
-function safeUrl(f){return PDF_BASE+encodeURIComponent(f).replace(/%2F/g,"/");}
+function safeUrl(f){
+  return PDF_BASE+encodeURIComponent(f).replace(/%2F/g,"/");
+}
 
 function renderHome(){
-  grid.innerHTML="";
+  home.innerHTML="";
+  section.style.display="none";
   SECTIONS.forEach(name=>{
     const c=document.createElement("div");
     c.className="card";
-    c.innerHTML=`<h3>${name}</h3><span>PDF-lərə bax</span>`;
+    c.innerHTML=`<h3>${name}</h3><span>PDF materiallar</span>`;
     c.onclick=()=>openSection(name);
-    grid.appendChild(c);
+    home.appendChild(c);
   });
 }
 
 function openSection(name){
-  home.style.display="none";
+  home.innerHTML="";
   section.style.display="block";
   title.textContent=name;
   renderList(name);
 }
 
 function renderList(name){
-  const q=(search.value||"").toLowerCase().trim();
-  const items=(FILES[name]||[]).filter(x=>!q||(x.title+" "+x.file).toLowerCase().includes(q));
   list.innerHTML="";
-  count.textContent=items.length+" PDF";
-  if(!items.length){empty.style.display="block";return}
+  const items=FILES[name]||[];
+  if(!items.length){
+    empty.style.display="block";
+    return;
+  }
   empty.style.display="none";
   items.forEach(x=>{
     const row=document.createElement("div");
@@ -252,10 +244,9 @@ function renderList(name){
   });
 }
 
-search.addEventListener("input",()=>{
-  const t=title.textContent;
-  if(t && t!=="—") renderList(t);
-});
+function goHome(){
+  renderHome();
+}
 
 renderHome();
 </script>
